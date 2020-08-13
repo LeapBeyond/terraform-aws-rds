@@ -1,7 +1,8 @@
 # -----------------------------------------------------------------------------
 # data lookups
 # -----------------------------------------------------------------------------
-data "aws_availability_zones" "available" {}
+data "aws_availability_zones" "available" {
+}
 
 # -----------------------------------------------------------------------------
 # items not likely to change much
@@ -13,20 +14,30 @@ variable "vpc_cidr" {
 }
 
 /* variables to inject via terraform.tfvars */
-variable "aws_region" {}
+variable "aws_region" {
+}
 
-variable "aws_account_id" {}
-variable "aws_profile" {}
-variable "db_user" {}
-variable "db_password" {}
-variable "db_port" {}
+variable "aws_account_id" {
+}
+
+variable "aws_profile" {
+}
+
+variable "db_user" {
+}
+
+variable "db_password" {
+}
+
+variable "db_port" {
+}
 
 variable "project_name" {
   default = "aws-rds"
 }
 
 variable "rds_properties" {
-  type = "map"
+  type = map(string)
 
   default = {
     "instance_class" = "db.t2.micro"
@@ -41,7 +52,7 @@ variable "rds_properties" {
 # items that may change
 # -----------------------------------------------------------------------------
 variable "tags" {
-  type = "map"
+  type = map(string)
 
   default = {
     "Owner"   = "robert"
@@ -51,6 +62,7 @@ variable "tags" {
 }
 
 variable "access_cidr" {
-  type    = "list"
+  type    = list(string)
   default = ["5.148.145.68/32"]
 }
+
